@@ -8,13 +8,32 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vue/compat": "^3.2.45",
     "axios": "^1.2.1",
-    "bootstrap": "^5.2.3",
-    "bootstrap-vue": "^2.23.1",
-    "vue": "^3.2.45"
+    "eslint": "^8.29.0",
+    "prettier": "^2.8.1",
+    "vue": "^3.2.45",
+    "vue-eslint-parser": "^9.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "vite": "^4.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "plugin:prettier/recommended",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
   }
 }

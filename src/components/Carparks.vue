@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    Car parks
+    last updated: {{lastUpdated}}
     <button @click="sortCarparks">Click me to refresh manually</button>
     <b-container class="bv-example-row">
       <b-row>
@@ -26,7 +28,7 @@
         </b-col>
         <b-col lg="3">
           <div>
-      <h1> Medium car parks:</h1>
+        <h1> Medium car parks:</h1>
         <div>
           <h2>Highest available:</h2>
           <div v-for="carpark in mediumBCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
@@ -88,11 +90,7 @@
           </div>
         </b-col>
       </b-row>
-    </b-container>
-    
-    
-    
-    
+    </b-container>   
   </div> 
 </template>
 
@@ -103,6 +101,7 @@
     name: 'Users',
     data() {
       return {
+        lastUpdated: '',
         carparks: null,
         smallS: 0,
         smallB: 0,
@@ -123,11 +122,23 @@
       };
     },
     methods: {
-      sortCarparks(){
+      async sortCarparks(){
+        await axios
+        .get('https://api.data.gov.sg/v1/transport/carpark-availability')
+        .then(res => {
+          this.lastUpdated = res.data.items[0].timestamp;
+          this.carparks = res.data.items[0].carpark_data.map((carpark)=>{
+            return {
+              id: carpark.carpark_number,
+              total_lots: parseInt(carpark.carpark_info[0].total_lots),
+              lots_available: parseInt(carpark.carpark_info[0].lots_available)
+            }
+          });
+        });
         this.resetData();
-        this.carparks.forEach(carpark => {
+        this.carparks.forEach((carpark) => {
           if (carpark.total_lots < 100){
-            if (this.smallSCP.length < 1){
+            if (this.smallSCP.length == 0){
               this.smallS = carpark.lots_available;
               this.smallB = carpark.lots_available;
               this.smallSCP.push(carpark);
@@ -167,7 +178,7 @@
                   this.mediumS = carpark.lots_available;
                   this.mediumSCP = [carpark];
                 }
-              }
+              };
               if (carpark.lots_available >= this.mediumB){
                 if (carpark.lots_available == this.mediumB){
                   //Append
@@ -176,10 +187,10 @@
                   this.mediumB = carpark.lots_available;
                   this.mediumBCP = [carpark];
                 }
-              }
+              };
             }
           } else if (carpark.total_lots < 400){
-            if (this.bigSCP.length < 1){
+            if (this.bigSCP.length == 0){
               this.bigS = carpark.lots_available;
               this.bigB = carpark.lots_available;
               this.bigSCP.push(carpark);
@@ -191,18 +202,20 @@
                   this.bigSCP.push(carpark);
                 } else {
                   this.bigS = carpark.lots_available;
-                  this.bigSCP = [carpark];
+                  this.bigSCP = [];
+                  this.bigSCP.push(carpark);
                 }
-              }
+              };
               if (carpark.lots_available >= this.bigB){
                 if (carpark.lots_available == this.bigB){
                   //Append
                   this.bigBCP.push(carpark);
                 } else {
                   this.bigB = carpark.lots_available;
-                  this.bigBCP = [carpark];
+                  this.bigBCP = [];
+                  this.bigBCP.push(carpark);
                 }
-              }
+              };
             }
           } else {
             if (this.largeSCP.length < 1){
@@ -219,7 +232,7 @@
                   this.largeS = carpark.lots_available;
                   this.largeSCP = [carpark];
                 }
-              }
+              };
               if (carpark.lots_available >= this.largeB){
                 if (carpark.lots_available == this.largeB){
                   //Append
@@ -228,7 +241,7 @@
                   this.largeB = carpark.lots_available;
                   this.largeBCP = [carpark];
                 }
-              }
+              };
             }
           }
         });
@@ -252,21 +265,8 @@
         this.largeBCP = [];
       }
     },
-    created: function() {
-      
-    },
+
     mounted: async function() {
-      var cp = await axios
-        .get('https://api.data.gov.sg/v1/transport/carpark-availability')
-        .then(res => {
-          this.carparks = res.data.items[0].carpark_data.map((carpark)=>{
-            return {
-              id: carpark.carpark_number,
-              total_lots: carpark.carpark_info[0].total_lots,
-              lots_available: carpark.carpark_info[0].lots_available
-            }
-          });
-        });
       this.sortCarparks();
       window.setInterval(() => {
           this.sortCarparks()
