@@ -1,7 +1,5 @@
 # car-park
 
-This template should help get you started developing with Vue 3 in Vite.
-
 ## Build docker image and run
 
 1. Execute command below to build a Docker image
