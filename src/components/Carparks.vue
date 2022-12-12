@@ -234,22 +234,22 @@
         });
       },
       resetData(){
-        smallS = 0;
-        smallB = 0;
-        mediumS = 0;
-        mediumB = 0;
-        bigS = 0;
-        bigB = 0;
-        largeS = 0;
-        largeB = 0;
-        smallSCP = [];
-        smallBCP = [];
-        mediumSCP = [];
-        mediumBCP = [];
-        bigSCP = [];
-        bigBCP = [];
-        largeSCP = [];
-        largeBCP = [];
+        this.smallS = 0;
+        this.smallB = 0;
+        this.mediumS = 0;
+        this.mediumB = 0;
+        this.bigS = 0;
+        this.bigB = 0;
+        this.largeS = 0;
+        this.largeB = 0;
+        this.smallSCP = [];
+        this.smallBCP = [];
+        this.mediumSCP = [];
+        this.mediumBCP = [];
+        this.bigSCP = [];
+        this.bigBCP = [];
+        this.largeSCP = [];
+        this.largeBCP = [];
       }
     },
     created: function() {
