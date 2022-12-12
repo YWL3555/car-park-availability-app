@@ -2,29 +2,16 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Build docker image and run
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+1. Execute command below to build a Docker image
+```console
+docker build -t carpark .    
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+2. Execute command below to run the app in a Docker container
+```console
+docker run -it -p 8080:80 --rm --name carpark-1 carpark    
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-# car-park-availability-app
+You should now be able to access the app on `localhost:8080`.
