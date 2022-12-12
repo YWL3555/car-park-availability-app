@@ -124,6 +124,7 @@
     },
     methods: {
       sortCarparks(){
+        this.resetData();
         this.carparks.forEach(carpark => {
           if (carpark.total_lots < 100){
             if (this.smallSCP.length < 1){
@@ -231,6 +232,24 @@
             }
           }
         });
+      },
+      resetData(){
+        smallS = 0;
+        smallB = 0;
+        mediumS = 0;
+        mediumB = 0;
+        bigS = 0;
+        bigB = 0;
+        largeS = 0;
+        largeB = 0;
+        smallSCP = [];
+        smallBCP = [];
+        mediumSCP = [];
+        mediumBCP = [];
+        bigSCP = [];
+        bigBCP = [];
+        largeSCP = [];
+        largeBCP = [];
       }
     },
     created: function() {
