@@ -1,96 +1,150 @@
 <template>
   <div class="container">
-    Car parks
-    last updated: {{lastUpdated}}
+    <h1>Car Parks</h1>
+    <h5>last updated: {{lastUpdated}}</h5>
     <button @click="sortCarparks">Click me to refresh manually</button>
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col lg="3">
-          <div>
+    <div class="row">
+  <div class="column-4"><div>
       <h1> Small car parks:</h1>
-        <div>
-          <h2>Highest available:</h2>
-          <div v-for="carpark in smallBCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          
+          <h2>Highest available ({{smallBCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in smallBCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
+        
         </div>
-        <div>
-          <h2>Lowest available:</h2>
-          <div v-for="carpark in smallSCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          <h2>Lowest available ({{smallSCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in smallSCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
         </div>
-          </div>
-        </b-col>
-        <b-col lg="3">
-          <div>
+          </div></div>
+  <div class="column-4"><div>
         <h1> Medium car parks:</h1>
-        <div>
-          <h2>Highest available:</h2>
-          <div v-for="carpark in mediumBCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          
+          <h2>Highest available ({{mediumBCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in mediumBCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
+        
         </div>
-        <div>
-          <h2>Lowest available:</h2>
-          <div v-for="carpark in mediumSCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          <h2>Lowest available ({{mediumSCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in mediumSCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
         </div>
-          </div>
-        </b-col>
-        <b-col lg="3">
-          <div>
+          </div></div>
+  <div class="column-4"><div>
       <h1> Big car parks:</h1>
-        <div>
-          <h2>Highest available:</h2>
-          <div v-for="carpark in bigBCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+      <div class="column-2">
+          
+          <h2>Highest available ({{bigBCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in bigBCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
+        
         </div>
-        <div>
-          <h2>Lowest available:</h2>
-          <div v-for="carpark in bigSCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          <h2>Lowest available ({{bigSCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in bigSCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
         </div>
-          </div>
-        </b-col>
-        <b-col lg="3">
-          <div>
+          </div></div>
+  <div class="column-4"><div>
       <h1> Large car parks:</h1>
-        <div>
-          <h2>Highest available:</h2>
-          <div v-for="carpark in largeBCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+      <div class="column-2">
+          
+          <h2>Highest available ({{largeBCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in largeBCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
+        
         </div>
-        <div>
-          <h2>Lowest available:</h2>
-          <div v-for="carpark in largeSCP" v-bind:key="carpark.carpark_number" style="background-color: white; margin-bottom: 5px" >
-            <h5>Carpark: {{carpark.id}}</h5>
-            <h5>total lot: {{carpark.total_lots}}</h5>
-            <h5>available lot: {{carpark.lots_available}}</h5>
-          </div>
+        <div class="column-2">
+          <h2>Lowest available ({{largeSCP.length}})</h2>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Total lot</th>
+              <th>Avaiable lot</th>
+            </tr>
+            <tr v-for="carpark in largeSCP" v-bind:key="carpark.carpark_number">
+              <td>{{carpark.id}}</td>
+              <td>{{carpark.total_lots}}</td>
+              <td>{{carpark.lots_available}}</td>
+            </tr>
+          </table>
         </div>
-          </div>
-        </b-col>
-      </b-row>
-    </b-container>   
+          </div></div>
+</div> 
   </div> 
 </template>
 
@@ -190,7 +244,7 @@
               };
             }
           } else if (carpark.total_lots < 400){
-            if (this.bigSCP.length == 0){
+            if (this.bigSCP.length < 1){
               this.bigS = carpark.lots_available;
               this.bigB = carpark.lots_available;
               this.bigSCP.push(carpark);
@@ -202,8 +256,7 @@
                   this.bigSCP.push(carpark);
                 } else {
                   this.bigS = carpark.lots_available;
-                  this.bigSCP = [];
-                  this.bigSCP.push(carpark);
+                  this.bigSCP = [carpark];
                 }
               };
               if (carpark.lots_available >= this.bigB){
@@ -212,8 +265,7 @@
                   this.bigBCP.push(carpark);
                 } else {
                   this.bigB = carpark.lots_available;
-                  this.bigBCP = [];
-                  this.bigBCP.push(carpark);
+                  this.bigBCP = [carpark];
                 }
               };
             }
@@ -278,5 +330,33 @@
 <style>
   h3 {
     margin-bottom: 5%;
+  }
+
+  .column-4 {
+    float: left;
+    width: 25%;
+  }
+
+  .column-2 {
+    float: center;
+    width: 100%;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+  table {
+    margin-left: auto;
+  margin-right: auto;
   }
 </style>
