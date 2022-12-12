@@ -3,7 +3,7 @@
     <h1>Car Parks</h1>
     <h5>last updated: {{lastUpdated}}</h5>
     <button @click="sortCarparks">Click me to refresh manually</button>
-    <div class="row">
+    <div class="row" v-if="carparks">
   <div class="column-4"><div>
       <h1> Small car parks:</h1>
         <div class="column-2">
@@ -144,7 +144,9 @@
           </table>
         </div>
           </div></div>
-</div> 
+
+   </div> 
+   <div v-else> <h1>Loading...</h1></div>
   </div> 
 </template>
 
@@ -318,7 +320,7 @@
       }
     },
 
-    mounted: async function() {
+    created: async function() {
       this.sortCarparks();
       window.setInterval(() => {
           this.sortCarparks()
